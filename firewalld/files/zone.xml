@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-{{pillar['headers']['salt']['xml']}}
 <zone{% if 'target' in zone %} target="{{ zone.target }}"{% endif %}>
 {% if 'short' in zone %}<short>{{ zone.short }}</short>{% else %}<short>{{ name }}</short>{% endif %}
 {% if 'description' in zone %}<description>{{ zone.description }}</description>{% endif %}
