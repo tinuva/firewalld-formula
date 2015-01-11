@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-{{pillar['headers']['salt']['xml']}}
 <service>
 {% if 'short' in service %}<short>{{ service.short }}</short>{% else %}<short>{{ name }}</short>{% endif %}
 {% if 'description' in service %}<description>{{ service.description }}</description>{% endif %}
