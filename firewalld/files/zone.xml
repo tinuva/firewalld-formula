@@ -7,7 +7,7 @@
   {% for v in zone.interfaces %}<interface name="{{ v }}" />{% endfor %}
 {% endif %}
 {% if 'sources' in zone %}
-  {% for v in zone.sources %}<source name="{{ v }}" />{% endfor %}
+  {% for v in zone.sources %}<source address="{{ v }}" />{% endfor %}
 {% endif %}
 {% if 'services' in zone %}
   {% for v in zone.services %}<service name="{{ v }}" />{% endfor %}
