@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <service>
-{% if 'short' in service %}<short>{{ service.short }}</short>{% else %}<short>{{ name }}</short>{% endif %}
-{% if 'description' in service %}<description>{{ service.description }}</description>{% endif %}
-{% if 'ports' in service %}
-  {% if 'tcp' in service.ports %}
-    {% for v in service.ports.tcp %}<port port="{{ v }}" protocol="tcp" />{% endfor %}   
-  {% endif %}
-  {% if 'udp' in service.ports %}
-    {% for v in service.ports.udp %}<port port="{{ v }}" protocol="udp" />{% endfor %}
-  {% endif %}
-  {% if 'modules' in service %}
-    {% for v in service.modules %}<module name="{{ v }}" />{% endfor %}
-  {% endif %}
-{% endif %}
-{% if 'destinations' in service %}
-  {% if 'ipv4' in service.destinations %}
-    {% for v in service.destinations.ipv4 %}<destination ipv4="{{ v }}" />{% endfor %}
-  {% endif %}
-  {% if 'ipv6' in service.destinations %}
-    {% for v in service.destinations.ipv6 %}<destination ipv6="{{ v }}" />{% endfor %}
-  {% endif %}
-{% endif %}
+  {%- if 'short' in service %}<short>{{ service.short }}</short>{%- else %}<short>{{ name }}</short>{%- endif %}
+  {%- if 'description' in service %}<description>{{ service.description }}</description>{%- endif %}
+{%- if 'ports' in service %}
+{%- if 'tcp' in service.ports %}
+  {%- for v in service.ports.tcp %}
+  <port port="{{ v }}" protocol="tcp" />
+  {%- endfor %}   
+{%- endif %}
+{%- if 'udp' in service.ports %}
+  {%- for v in service.ports.udp %}
+  <port port="{{ v }}" protocol="udp" />
+  {%- endfor %}
+{%- endif %}
+{%- if 'modules' in service %}
+  {%- for v in service.modules %}
+  <module name="{{ v }}" />
+  {%- endfor %}
+{%- endif %}
+{%- endif %}
+{%- if 'destinations' in service %}
+  {%- if 'ipv4' in service.destinations %}
+    {%- for v in service.destinations.ipv4 %}
+  <destination ipv4="{{ v }}" />
+    {%- endfor %}
+  {%- endif %}
+  {%- if 'ipv6' in service.destinations %}
+    {%- for v in service.destinations.ipv6 %}
+  <destination ipv6="{{ v }}" />
+    %- endfor %}
+  {%- endif %}
+{%- endif %}
 </service>
