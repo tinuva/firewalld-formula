@@ -28,7 +28,7 @@
   {%- if 'ipv6' in service.destinations %}
     {%- for v in service.destinations.ipv6 %}
   <destination ipv6="{{ v }}" />
-    %- endfor %}
+    {%- endfor %}
   {%- endif %}
 {%- endif %}
 </service>
