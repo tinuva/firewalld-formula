@@ -59,7 +59,7 @@
     <destination address="{{ rule.destination.address }}" {%- if 'invert' in rule.destination %}invert="{{ rule.destination.invert }}"{%- endif %}/>
   {%- endif %}    
   {%- if 'service' in rule %}
-    <destination name="{{ rule.service }}"/>
+    <service name="{{ rule.service }}"/>
   {%- endif %}    
   {%- if 'port' in rule %}
     <port port="{{ rule.port.portid }}" protocol="{{ rule.port.protocol }}"/>
