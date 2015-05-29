@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<service>
-  {%- if 'short' in service %}<short>{{ service.short }}</short>{%- else %}<short>{{ name }}</short>{%- endif %}
-  {%- if 'description' in service %}<description>{{ service.description }}</description>{%- endif %}
+<service version="1">
+  {% if 'short' in service %}<short>{{ service.short }}</short>{%- else %}<short>{{ name }}</short>{%- endif %}
+  {% if 'description' in service %}<description>{{ service.description }}</description>{%- endif %}
 {%- if 'ports' in service %}
 {%- if 'tcp' in service.ports %}
   {%- for v in service.ports.tcp %}

@@ -59,6 +59,7 @@ Salt Compatibility
 Tested with:
 
 * 2014.1.x
+* 2015.5.x
 
 OS Compatibility
 ================
@@ -66,3 +67,4 @@ OS Compatibility
 Tested with:
 
 * CentOS 7
+* Archlinux
