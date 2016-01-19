@@ -3,39 +3,39 @@
 #
 # This state installs/runs firewalld.
 #
-
+{% from "firewalld/map.jinja" import firewalld with context %}
 
 {% if salt['pillar.get']('firewalld:enabled') %}
 include:
-  - firewalld._config
-  - firewalld._service
-  - firewalld._zone
+  - firewalld.config
+  - firewalld.services
+  - firewalld.zones
 
 # iptables service that comes with rhel/centos
 iptables:
-  service:
-    - disabled
+  service.disabled:
     - enable: False
     
 ip6tables:
-  service:
-    - disabled
+  service.disabled:
     - enable: False
 
-firewalld:
-  pkg:
-    - installed
-  service:
-    - running              # ensure it's running
+package_firewalld:
+  pkg.installed:
+    - name: {{ firewalld.package }}
+
+service_firewalld:
+  service.running:
+    - name: {{ firewalld.service }}
     - enable: True         # start on boot
     - require:
-      - pkg: firewalld
-      - file: /etc/firewalld/firewalld.conf # require this file
-      - service: iptables         # ensure it's stopped
-      - service: ip6tables        # ensure it's stopped
+      - pkg: package_firewalld
+      - file: config_firewalld
+      - service: iptables  # ensure it's stopped
+      - service: ip6tables # ensure it's stopped
 {% else %}
-firewalld:
-  service:
-    - dead                 # ensure it's not running
-    - enable: False        # don't start on boot
+service_firewalld:
+  service.dead:
+    - name: {{ firewalld.service }}
+    - enable: False # don't start on boot
 {% endif %}
