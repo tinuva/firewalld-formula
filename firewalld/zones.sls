@@ -1,19 +1,22 @@
-# == State: firewalld._zone
+# == State: firewalld.zones
 #
 # This state ensures that /etc/firewalld/zones/ exists.
 #
-/etc/firewalld/zones:
+{% from "firewalld/map.jinja" import firewalld with context %}
+
+directory_firewalld_zones:
   file.directory:            # make sure this is a directory
+    - name: /etc/firewalld/zones
     - user: root
     - group: root
     - mode: 750
     - require:
-      - pkg: firewalld       # make sure package is installed
-    - watch_in:
-      - service: firewalld   # restart service
+      - pkg: package_firewalld # make sure package is installed
+    - listen_in:
+      - service: service_firewalld # restart service
       
 
-# == Define: firewalld._zone
+# == Define: firewalld.zones
 #
 # This defines a zone configuration, see firewalld.zone (5) man page.
 #
@@ -21,8 +24,7 @@
 {% set z_name = v.name|default(k) %}
 
 /etc/firewalld/zones/{{ z_name }}.xml:
-  file:
-    - managed
+  file.managed:
     - name: /etc/firewalld/zones/{{ z_name }}.xml
     - user: root
     - group: root
@@ -30,9 +32,10 @@
     - source: salt://firewalld/files/zone.xml
     - template: jinja
     - require:
-      - pkg: firewalld       # make sure package is installed
-    - watch_in: 
-      - service: firewalld   # restart service
+      - pkg: package_firewalld # make sure package is installed
+      - file: directory_firewalld_zones
+    - listen_in: 
+      - service: service_firewalld   # restart service
     - context:
         name: {{ z_name }}
         zone: {{ v }}
