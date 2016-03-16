@@ -13,7 +13,7 @@ directory_firewalld_services:
     - require:
       - pkg: package_firewalld # make sure package is installed
     - listen_in:
-      - service: service_firewalld # restart service
+      - module: service_firewalld # restart service
 
 
 # == Define: firewalld.services
@@ -37,7 +37,7 @@ directory_firewalld_services:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld_services
     - listen_in: 
-      - service: service_firewalld # restart service
+      - module: service_firewalld # restart service
     - context:
         name: {{ s_name }}
         service: {{ v }}

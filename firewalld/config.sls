@@ -13,7 +13,7 @@ directory_firewalld:
     - require:
       - pkg: package_firewalld # make sure package is installed
     - listen_in:
-      - service: service_firewalld # restart service
+      - module: service_firewalld # restart service
 
 config_firewalld:
   file.managed:
@@ -27,5 +27,5 @@ config_firewalld:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld
     - listen_in: 
-      - service: service_firewalld # restart service
+      - module: service_firewalld # restart service
 
