@@ -13,8 +13,7 @@ directory_firewalld_zones:
     - require:
       - pkg: package_firewalld # make sure package is installed
     - listen_in:
-      - service: service_firewalld # restart service
-      
+      - module: service_firewalld # restart service
 
 # == Define: firewalld.zones
 #
@@ -35,7 +34,7 @@ directory_firewalld_zones:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld_zones
     - listen_in: 
-      - service: service_firewalld   # restart service
+      - module: service_firewalld   # restart service
     - context:
         name: {{ z_name }}
         zone: {{ v }}
