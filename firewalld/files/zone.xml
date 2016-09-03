@@ -52,6 +52,9 @@
   {%- else %}
   <rule>
   {%- endif %}    
+  {%- if 'ipset' in rule %}
+    <source ipset="{{ rule.ipset.name }}"/>
+  {%- endif %}
   {%- if 'source' in rule %}
     <source address="{{ rule.source.address }}" {%- if 'invert' in rule.source %}invert="{{ rule.source.invert }}"{%- endif %}/>
   {%- endif %}    

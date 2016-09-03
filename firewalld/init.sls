@@ -8,6 +8,7 @@
 {% if salt['pillar.get']('firewalld:enabled') %}
 include:
   - firewalld.config
+  - firewalld.ipsets
   - firewalld.services
   - firewalld.zones
 

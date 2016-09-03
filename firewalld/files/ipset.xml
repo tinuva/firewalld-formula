@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ipset{%- if 'type' in ipset %} type="{{ ipset.type }}" {%- endif %}>
+{%- if 'short' in ipset %}
+  <short>{{ ipset.short }}</short>
+{%- endif %}
+{%- if 'description' in ipset %}
+  <description>{{ ipset.description }}</description>
+{%- endif %}
+{%- if 'options' in ipset %}
+{%- if 'maxelem' in ipset.options %}
+{%- for v in ipset.options.maxelem %}
+  <option name="maxelem" value="{{ v }}"/>
+    {%- endfor %}
+{%- endif %}
+{%- if 'timeout' in ipset.options %}
+{%- for v in ipset.options.timeout %}
+  <option name="timeout" value="{{ v }}"/>
+{%- endfor %}
+{%- endif %}
+{%- if 'hashsize' in ipset.options %}
+{%- for v in ipset.options.hashsize %}
+  <option name="hashsize" value="{{ v }}"/>
+{%- endfor %}
+{%- endif %}
+{%- endif %}
+{%- if 'entries' in ipset %}
+{%- for v in ipset.entries %}
+  <entry>{{ v }}</entry>
+{%- endfor %}
+{%- endif %}
+</ipset>
