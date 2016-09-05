@@ -2,5 +2,6 @@
 # vim: ft=yaml
 firewalld:
   package: firewalld
+  ipsetpackage: ipset
   service: firewalld
   config: /etc/firewalld.conf
