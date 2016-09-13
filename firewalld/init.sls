@@ -11,6 +11,7 @@ include:
   - firewalld.ipsets
   - firewalld.services
   - firewalld.zones
+  - firewalld.direct
 
 # iptables service that comes with rhel/centos
 iptables:
