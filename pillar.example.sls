@@ -89,3 +89,21 @@ firewalld:
         - comment: vsftpd
           port: 21
           protocol: tcp
+
+  direct:
+    chain:
+      MYCHAIN:
+        ipv: ipv4
+        table: raw
+    rule:
+      INTERNETACCESS:
+        ipv: ipv4
+        table: filter
+        chain: FORWARD
+        priority: "0"
+        args: "-i iintern -o iextern -s 192.168.1.0/24 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT"
+    passthrough:
+      MYPASSTHROUGH:
+        ipv: ipv4
+        args: "-t raw -A MYCHAIN -j DROP"
+

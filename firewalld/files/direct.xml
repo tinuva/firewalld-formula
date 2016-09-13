@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<direct>
+  {%- if 'chain' in direct %}
+  {%- for k, v in direct.chain.items() %}
+  <chain ipv="{{v.ipv}}" table="{{v.table}}" chain="{{k}}"/>
+  {%- endfor %}   
+  {%- endif %}
+  {%- if 'rule' in direct %}
+  {%- for k, v in direct.rule.items() %}
+  <rule priority="{{v.priority}}" table="{{v.table}}" ipv="{{v.ipv}}" chain="{{v.chain}}">{{v.args}}</rule>
+  {%- endfor %}   
+  {%- endif %}
+  {%- if 'passthrough' in direct %}
+  {%- for k, v in direct.passthrough.items() %}
+  <passthrough ipv="{{v.ipv}}">{{v.args}}</passthrough>
+  {%- endfor %}   
+  {%- endif %}
+</direct>
