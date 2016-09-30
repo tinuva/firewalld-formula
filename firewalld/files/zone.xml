@@ -10,7 +10,12 @@
 {%- endif %}
 {%- if 'sources' in zone %}
   {%- for v in zone.sources %}
+    {%- if 'comment' in v %}
+  <!-- {{ v.comment }} -->
+  <source address="{{ v.source }}" />
+    {%- else %}
   <source address="{{ v }}" />
+    {%- endif %}
   {%- endfor %}
 {%- endif %}
 {%- if 'services' in zone %}
