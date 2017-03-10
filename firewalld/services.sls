@@ -12,8 +12,10 @@ directory_firewalld_services:
     - mode: 750
     - require:
       - pkg: package_firewalld # make sure package is installed
-    - listen_in:
-      - module: service_firewalld # restart service
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config
 
 
 # == Define: firewalld.services
@@ -36,8 +38,10 @@ directory_firewalld_services:
     - require:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld_services
-    - listen_in: 
-      - module: service_firewalld # restart service
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config
     - context:
         name: {{ s_name }}
         service: {{ v|json }}

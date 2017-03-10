@@ -19,8 +19,6 @@ provisioner:
     firewalld.sls:
       firewalld:
         enabled: True
-        IndividualCalls: 'no'
-        LogDenied: 'off'
         services:
           glusterfs:
             short: glusterfs

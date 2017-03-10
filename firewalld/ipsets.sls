@@ -17,8 +17,10 @@ directory_firewalld_ipsets:
     - mode: 750
     - require:
       - pkg: package_firewalld # make sure package is installed
-    - listen_in:
-      - module: service_firewalld # restart service
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config
 
 # == Define: firewalld.ipsets
 #
@@ -38,8 +40,10 @@ directory_firewalld_ipsets:
     - require:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld_ipsets
-    - listen_in: 
-      - module: service_firewalld   # restart service
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config
     - context:
         name: {{ z_name }}
         ipset: {{ v }}

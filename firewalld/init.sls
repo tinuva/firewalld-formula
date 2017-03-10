@@ -17,7 +17,7 @@ include:
 iptables:
   service.disabled:
     - enable: False
-    
+
 ip6tables:
   service.disabled:
     - enable: False
@@ -26,7 +26,7 @@ package_firewalld:
   pkg.installed:
     - name: {{ firewalld.package }}
 
-service_firewalld_running:
+service_firewalld:
   service.running:
     - name: {{ firewalld.service }}
     - enable: True         # start on boot
@@ -36,18 +36,14 @@ service_firewalld_running:
       - service: iptables  # ensure it's stopped
       - service: ip6tables # ensure it's stopped
 
-service_firewalld:
-  module.wait:
-    - name: service.restart
-    - m_name: {{ firewalld.service }}
+reload_firewalld:
+  cmd.wait:
+    - name: 'firewall-cmd --reload'
     - require:
-      - pkg: package_firewalld
-      - file: config_firewalld
-      - service: iptables  # ensure it's stopped
-      - service: ip6tables # ensure it's stopped
+      - service: service_firewalld
 
 {% else %}
-service_firewalld_dead:
+service_firewalld:
   service.dead:
     - name: {{ firewalld.service }}
     - enable: False # don't start on boot
