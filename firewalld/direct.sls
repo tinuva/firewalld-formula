@@ -5,7 +5,7 @@
 
 # == Define: firewalld.direct
 #
-# This defines a configuration for permanent direct chains, 
+# This defines a configuration for permanent direct chains,
 # rules and passtthroughs, see firewalld.direct (5) man page.
 
 {%- if firewalld.get('direct', False) %}
@@ -21,8 +21,10 @@
     - require:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld
-    - listen_in: 
-      - module: service_firewalld # restart service
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config
     - context:
         direct: {{ firewalld.direct|json }}
 {%- endif %}
