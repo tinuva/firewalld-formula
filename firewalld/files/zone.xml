@@ -23,6 +23,16 @@
     {%- endif %}
   {%- endfor %}
 {%- endif %}
+{%- if 'ipsets' in zone %}
+  {%- for v in zone.ipsets %}
+    {%- if 'comment' in v %}
+  <!-- {{ v.comment }} -->
+  <source ipset="{{ v.ipset }}" />
+    {%- else %}
+  <source ipset="{{ v }}" />
+    {%- endif %}
+  {%- endfor %}
+{%- endif %}
 {%- if 'services' in zone %}
   {%- for v in zone.services %}
   <service name="{{ v }}" />
