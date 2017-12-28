@@ -4,3 +4,5 @@ metadata.json
 *.swp
 *.tmp
 /.project
+.kitchen/
+.kitchen.local.yml

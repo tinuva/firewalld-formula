@@ -1,0 +1,38 @@
+---
+driver:
+  name: vagrant
+
+platforms:
+  - name: centos-7.2
+
+provisioner:
+  name: salt_solo
+  salt_install: bootstrap
+  salt_bootstrap_url: https://bootstrap.saltstack.com
+  salt_version: latest
+  formula: firewalld
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - firewalld
+    firewalld.sls:
+      firewalld:
+        enabled: True
+        services:
+          glusterfs:
+            short: glusterfs
+            description: 'GlusterFS network filesystem'
+            ports:
+              tcp:
+                - 24007-24008
+                - 49152-49200
+
+suites:
+  - name: default
+    provisioner:
+      salt_bootstrap_options: -X -d
+      state_top:
+        base:
+          '*':
+            - firewalld

@@ -8,14 +8,16 @@
 {% if salt['pillar.get']('firewalld:enabled') %}
 include:
   - firewalld.config
+  - firewalld.ipsets
   - firewalld.services
   - firewalld.zones
+  - firewalld.direct
 
 # iptables service that comes with rhel/centos
 iptables:
   service.disabled:
     - enable: False
-    
+
 ip6tables:
   service.disabled:
     - enable: False
@@ -33,6 +35,13 @@ service_firewalld:
       - file: config_firewalld
       - service: iptables  # ensure it's stopped
       - service: ip6tables # ensure it's stopped
+
+reload_firewalld:
+  cmd.wait:
+    - name: 'firewall-cmd --reload'
+    - require:
+      - service: service_firewalld
+
 {% else %}
 service_firewalld:
   service.dead:
