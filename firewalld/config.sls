@@ -18,7 +18,7 @@ config_firewalld:
     - name: /etc/firewalld/firewalld.conf
     - user: root
     - group: root
-    - mode: 640
+    - mode: 644
     - source: salt://firewalld/files/firewalld.conf
     - template: jinja
     - require:
