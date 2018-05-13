@@ -45,7 +45,8 @@ directory_firewalld_ipsets:
     - watch_in:
       - cmd: reload_firewalld # reload firewalld config
     - context:
-        ipset: {{ v|json_encode_dict }}
+        name: {{ z_name }}
+        ipset: {{ v }}
 
 {% endfor %}
 {%- endif %}
