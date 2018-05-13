@@ -58,8 +58,8 @@ Salt Compatibility
 
 Tested with:
 
-* 2017.7.x
-* 2018.3.x
+* 2014.1.x
+* 2015.5.x
 
 OS Compatibility
 ================
