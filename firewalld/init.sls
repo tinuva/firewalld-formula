@@ -5,7 +5,16 @@
 #
 {% from "firewalld/map.jinja" import firewalld with context %}
 
-{% if salt['pillar.get']('firewalld:enabled') %}
+{% if salt['grains.get']('osfullname') == "SLES" and salt['grains.get']('osmajorrelease')|int < 15 %}
+
+firewalld-unsupported:
+  test.show_notification:
+    - text: |
+        Firewalld is not supported on {{ grains['osfinger'] }}
+        See https://www.suse.com/releasenotes/x86_64/SUSE-SLES/15/#fate-323460
+
+{% elif salt['pillar.get']('firewalld:enabled') %}
+
 include:
   - firewalld.config
   - firewalld.ipsets
@@ -43,8 +52,10 @@ reload_firewalld:
       - service: service_firewalld
 
 {% else %}
+
 service_firewalld:
   service.dead:
     - name: {{ firewalld.service }}
     - enable: False # don't start on boot
+
 {% endif %}
