@@ -3,5 +3,6 @@
 firewalld:
   package: firewalld
   ipsetpackage: ipset
+  backendpackage: nftables
   service: firewalld
   config: /etc/firewalld.conf

@@ -18,6 +18,7 @@ firewalld-unsupported:
 include:
   - firewalld.config
   - firewalld.ipsets
+  - firewalld.backend
   - firewalld.services
   - firewalld.zones
   - firewalld.direct
