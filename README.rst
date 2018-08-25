@@ -1,8 +1,10 @@
-===========
+=================
 firewalld-formula
-===========
+=================
 
 Salt Stack Formula to set up and configure Firewalld, dynamically managed firewall with support for network/firewall zones to define the trust level of network connections or interfaces
+
+.. image:: https://travis-ci.org/saltstack-formulas/firewalld-formula.svg?branch=master
 
 NOTICE BEFORE YOU USE
 =====================
@@ -30,7 +32,7 @@ Available states
     :local:
 
 ``firewalld``
--------
+-------------
 Manage firewalld
 
 Additional resources
@@ -58,8 +60,7 @@ Salt Compatibility
 
 Tested with:
 
-* 2014.1.x
-* 2015.5.x
+* 2018.3.x (will probably work too with 2017.x.x)
 
 OS Compatibility
 ================
@@ -67,4 +68,5 @@ OS Compatibility
 Tested with:
 
 * CentOS 7
-* Archlinux
+* Debian 9
+* Ubuntu 18.04
