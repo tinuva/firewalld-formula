@@ -1,12 +1,21 @@
 # FirewallD pillar examples:
 firewalld:
   enabled: True
+
   ipset:
     manage: True
     pkg: ipset
 
-  installbackend: True
-  backendpackage: nftables
+  # ipset:                          # Deprecated. Support for this format will be removed in future releases
+  # ipsetpackag: ipset              # Deprecated. Will be removed in future releases
+
+  backend:
+    manage: True
+    pkg: nftables
+
+  # installbackend: True            # Deprecated. Will be removed in future releases
+  # backendpackage: nftables        # Deprecated. Will be removed in future releases
+
   default_zone: public
 
   services:
