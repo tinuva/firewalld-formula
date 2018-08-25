@@ -1,7 +1,10 @@
 # FirewallD pillar examples:
 firewalld:
   enabled: True
-  ipset: True
+  ipset:
+    manage: True
+    pkg: ipset
+
   installbackend: False
   default_zone: public
 
@@ -50,7 +53,6 @@ firewalld:
           - 1024
       entries:
         - 10.0.0.1
-
 
   zones:
     public:
