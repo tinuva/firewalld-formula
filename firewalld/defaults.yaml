@@ -7,11 +7,11 @@ firewalld:
   config: /etc/firewalld.conf
 
   ipset:
-    manage: true
+    manage: false
     pkg: ipset
 
   backend:
-    manage: true
+    manage: false
     pkg: nftables
 
   ipsets: {}

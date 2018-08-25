@@ -5,7 +5,8 @@ firewalld:
     manage: True
     pkg: ipset
 
-  installbackend: False
+  installbackend: True
+  backendpackage: nftables
   default_zone: public
 
   services:
