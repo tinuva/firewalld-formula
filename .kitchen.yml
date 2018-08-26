@@ -22,22 +22,13 @@ provisioner:
   salt_copy_filter:
     - .kitchen
     - .git
+  pillars-from-files:
+    firewalld.sls: pillar.example
   pillars:
     top.sls:
       base:
         '*':
           - firewalld
-    firewalld.sls:
-      firewalld:
-        enabled: True
-        services:
-          glusterfs:
-            short: glusterfs
-            description: 'GlusterFS network filesystem'
-            ports:
-              tcp:
-                - 24007-24008
-                - 49152-49200
 
 verifier:
   name: inspec

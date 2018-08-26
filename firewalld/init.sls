@@ -13,7 +13,7 @@ firewalld-unsupported:
         Firewalld is not supported on {{ grains['osfinger'] }}
         See https://www.suse.com/releasenotes/x86_64/SUSE-SLES/15/#fate-323460
 
-{% elif salt['pillar.get']('firewalld:enabled') %}
+{% elif firewalld.enabled %}
 
 include:
   - firewalld.config
