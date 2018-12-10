@@ -27,6 +27,11 @@
   <option name="hashsize" value="{{ v }}"/>
 {%- endfor %}
 {%- endif %}
+{%- if 'family' in ipset.options %}
+{%- for v in ipset.options.family %}
+  <option name="family" value="{{ v }}"/>
+{%- endfor %}
+{%- endif %}
 {%- endif %}
 {%- if 'entries' in ipset %}
 {%- for v in ipset.entries %}

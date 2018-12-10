@@ -63,6 +63,21 @@ firewalld:
           - 1024
       entries:
         - 10.0.0.1
+    fail2ban-ssh-ipv6:
+      short: fail2ban-ssh-ipv6
+      description: fail2ban-ssh-ipv6 ipset
+      type: 'hash:ip'
+      options:
+        family:
+          - inet6
+        maxelem:
+          - 65536
+        timeout:
+          - 300
+        hashsize:
+          - 1024
+      entries:
+        - 2a01::1
 
   zones:
     public:
@@ -119,4 +134,3 @@ firewalld:
       MYPASSTHROUGH:
         ipv: ipv4
         args: "-t raw -A MYCHAIN -j DROP"
-
