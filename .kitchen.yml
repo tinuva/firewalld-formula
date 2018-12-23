@@ -10,8 +10,17 @@ driver_config:
 
 platforms:
   - name: debian-9
+    driver_config:
+      provision_command:
+        - apt-get install udev net-tools -y
   - name: ubuntu-18.04
+    driver_config:
+      provision_command:
+        - apt-get install udev net-tools -y
   - name: centos-7
+    driver_config:
+      provision_command:
+        - yum install udev net-tools -y
 
 provisioner:
   name: salt_solo
@@ -32,9 +41,9 @@ provisioner:
 
 verifier:
   name: inspec
-  sudo: false
-  # cli, documentation, html, progress, json, json-min, json-rspec, junit
-  reporter: cli
+  sudo: true
+  reporter:
+    - cli
   inspec_tests:
     - path: test/integration/default
 
