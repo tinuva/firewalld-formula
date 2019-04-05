@@ -77,7 +77,7 @@ directory_firewalld_ipsets:
       - cmd: reload_firewalld # reload firewalld config
     - context:
         name: {{ z_name }}
-        ipset: {{ v }}
+        ipset: {{ v|json }}
 
   {% endfor %}
 {%- endif %}
