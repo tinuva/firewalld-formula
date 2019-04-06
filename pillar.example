@@ -28,6 +28,11 @@ firewalld:
           - 5252
       modules:
         - some_module_to_load
+      protocols:
+        - igmp
+      source_ports:
+        tcp:
+          - 21
       destinations:
         ipv4:
           - 224.0.0.251
@@ -89,6 +94,8 @@ firewalld:
         - https
         - ssh
         - salt-minion
+      protocols:
+        - igmp
       rich_rules:
         - family: ipv4
           source:
@@ -116,6 +123,13 @@ firewalld:
           protocol: tcp
         - comment: vsftpd
           port: 21
+          protocol: tcp
+      source_ports:
+        - comment: something
+          port: 2222
+          protocol: tcp
+        - comment: something_else
+          port: 4444
           protocol: tcp
 
   direct:
