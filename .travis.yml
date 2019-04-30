@@ -13,9 +13,9 @@ install:
 
 env:
   matrix:
-    - INSTANCE: default-debian-9
-    - INSTANCE: default-ubuntu-1804
-    - INSTANCE: default-centos-7
+    - INSTANCE: default-debian-9-2019-2-py3
+    - INSTANCE: default-ubuntu-1804-2019-2-py3
+    - INSTANCE: default-centos-7-2019-2-py2
 
 script:
   - bundle exec kitchen verify ${INSTANCE}

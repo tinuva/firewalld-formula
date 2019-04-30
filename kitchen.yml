@@ -7,43 +7,27 @@ driver:
 driver_config:
   use_sudo: false
   privileged: true
-  provision_command: mkdir -p /run/sshd
   run_command: /lib/systemd/systemd
   pid_one_command: /usr/lib/systemd/systemd
 
 platforms:
-  - name: centos-7
+  - name: centos-7-2019-2-py2
     driver_config:
-      image: centos:7
-      provision_command:
-        - yum install udev net-tools glibc-common -y
-        - echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-        - localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+      image: netmanagers/salt-2019.2-py2:centos-7
       platform: rhel
-
-  - name: debian-9
+  - name: debian-9-2019-2-py3
     driver_config:
-      image: debian:9
-      provision_command:
-        - apt-get install udev net-tools locales -y
-        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-        - locale-gen en_US.UTF-8
+      image: netmanagers/salt-2019.2-py3:debian-9
       platform: debian
-  - name: ubuntu-18.04
+  - name: ubuntu-1804-2019-2-py3
     driver_config:
-      image: ubuntu:18.04
-      provision_command:
-        - apt-get install udev net-tools locales -y
-        - localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-        - locale-gen en_US.UTF-8
+      image: netmanagers/salt-2019.2-py3:ubuntu-1804
       platform: ubuntu
 
 provisioner:
   name: salt_solo
   log_level: info
   require_chef: false
-  salt_version: latest
   formula: firewalld
   salt_copy_filter:
     - .kitchen
