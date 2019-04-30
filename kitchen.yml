@@ -12,22 +12,23 @@ driver_config:
 
 platforms:
   - name: centos-7-2019-2-py2
-    driver_config:
+    driver:
       image: netmanagers/salt-2019.2-py2:centos-7
       platform: rhel
   - name: debian-9-2019-2-py3
-    driver_config:
+    driver:
       image: netmanagers/salt-2019.2-py3:debian-9
       platform: debian
   - name: ubuntu-1804-2019-2-py3
-    driver_config:
-      image: netmanagers/salt-2019.2-py3:ubuntu-1804
+    driver:
+      image: netmanagers/salt-2019.2-py3:ubuntu-18.04
       platform: ubuntu
 
 provisioner:
   name: salt_solo
   log_level: info
   require_chef: false
+  salt_install: none
   formula: firewalld
   salt_copy_filter:
     - .kitchen
