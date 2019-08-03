@@ -10,7 +10,7 @@
 firewalld-unsupported:
   test.show_notification:
     - text: |
-        Firewalld is not supported on {{ grains['osfinger'] }}
+        Firewalld is not supported on {{ grains['os'] }}
         See https://www.suse.com/releasenotes/x86_64/SUSE-SLES/15/#fate-323460
 
 {% elif firewalld.enabled %}
