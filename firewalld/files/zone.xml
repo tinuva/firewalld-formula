@@ -57,7 +57,7 @@
   {%- endfor %}
 {%- endif %}
 {%- if 'icmp_block_inversion' in zone %}
-  <icmp-block-inversion name="{{ zone.icmp_blok_inversion }}" />
+  <icmp-block-inversion name="{{ zone.icmp_block_inversion }}" />
 {%- endif %}
 {%- if 'masquerade' in zone %}
   {%- if zone.masquerade %}
