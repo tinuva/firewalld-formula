@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 # FirewallD pillar examples:
 firewalld:
-  enabled: True
+  enabled: true
   IndividualCalls: 'no'
   LogDenied: 'off'
   AutomaticHelpers: 'system'
@@ -9,25 +12,30 @@ firewalld:
   RFC3964_IPv4: 'yes'
 
   ipset:
-    manage: True
+    manage: true
     pkg: ipset
 
-  # ipset:                          # Deprecated. Support for this format will be removed in future releases
-  # ipsetpackag: ipset              # Deprecated. Will be removed in future releases
+  # ipset:              # Deprecated. Will be removed in future releases
+  # ipsetpackag: ipset  # Deprecated. Will be removed in future releases
 
   backend:
-    manage: True
+    manage: true
     pkg: nftables
 
-  # installbackend: True            # Deprecated. Will be removed in future releases
-  # backendpackage: nftables        # Deprecated. Will be removed in future releases
+  # installbackend: true      # Deprecated. Will be removed in future releases
+  # backendpackage: nftables  # Deprecated. Will be removed in future releases
 
   default_zone: public
 
   services:
     sshcustom:
       short: sshcustom
-      description: SSH on port 3232 and 5252. Secure Shell (SSH) is a protocol for logging into and executing commands on remote machines. It provides secure encrypted communications. If you plan on accessing your machine remotely via SSH over a firewalled interface, enable this option. You need the openssh-server package installed for this option to be useful.
+      description: >-
+        SSH on port 3232 and 5252. Secure Shell (SSH) is a protocol for logging
+        into and executing commands on remote machines. It provides secure
+        encrypted communications. If you plan on accessing your machine
+        remotely via SSH over a firewalled interface, enable this option. You
+        need the openssh-server package installed for this option to be useful.
       ports:
         tcp:
           - 3232
@@ -93,7 +101,10 @@ firewalld:
   zones:
     public:
       short: Public
-      description: "For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted."
+      description: >-
+        For use in public areas. You do not trust the other computers on
+        networks to not harm your computer. Only selected incoming connections
+        are accepted.
       services:
         - http
         - zabbixcustom
@@ -105,7 +116,7 @@ firewalld:
       rich_rules:
         - family: ipv4
           source:
-              address: 8.8.8.8/24
+            address: 8.8.8.8/24
           accept: true
         - family: ipv4
           ipset:
@@ -113,14 +124,14 @@ firewalld:
           reject:
             type: icmp-port-unreachable
       ports:
-{% if grains['id'] == 'salt.example.com' %}
+        # {%- if grains['id'] == 'salt.example.com' %}
         - comment: salt-master
           port: 4505
           protocol: tcp
         - comment: salt-python
           port: 4506
           protocol: tcp
-{% endif %}
+        # {%- endif %}
         - comment: zabbix-agent
           port: 10050
           protocol: tcp
@@ -149,8 +160,17 @@ firewalld:
         table: filter
         chain: FORWARD
         priority: "0"
-        args: "-i iintern -o iextern -s 192.168.1.0/24 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT"
+        args: >-
+          -i iintern
+          -o iextern
+          -s 192.168.1.0/24
+          -m conntrack
+          --ctstate NEW,RELATED,ESTABLISHED
+          -j ACCEPT
     passthrough:
       MYPASSTHROUGH:
         ipv: ipv4
-        args: "-t raw -A MYCHAIN -j DROP"
+        args: >-
+          -t raw
+          -A MYCHAIN
+          -j DROP
