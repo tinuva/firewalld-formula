@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe package('firewalld') do
   it { should be_installed }
 end
