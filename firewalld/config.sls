@@ -12,20 +12,19 @@ directory_firewalld:
     - mode: 750
     - require:
       - pkg: package_firewalld # make sure package is installed
-    - listen_in:
-      - service: service_firewalld # restart service
 
 config_firewalld:
   file.managed:
     - name: /etc/firewalld/firewalld.conf
     - user: root
     - group: root
-    - mode: 640
+    - mode: 644
     - source: salt://firewalld/files/firewalld.conf
     - template: jinja
     - require:
       - pkg: package_firewalld # make sure package is installed
       - file: directory_firewalld
-    - listen_in: 
-      - service: service_firewalld # restart service
-
+    - require_in:
+      - service: service_firewalld
+    - watch_in:
+      - cmd: reload_firewalld # reload firewalld config

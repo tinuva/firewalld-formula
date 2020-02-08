@@ -1,6 +1,18 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+---
 firewalld:
+  enabled: true
   package: firewalld
   service: firewalld
   config: /etc/firewalld.conf
+
+  ipset:
+    manage: false
+    pkg: ipset
+
+  backend:
+    manage: false
+    pkg: nftables
+
+  ipsets: {}
