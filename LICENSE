@@ -1,6 +1,4 @@
-   Copyright (c) 2014 David Bezuidenhout <tinuva@ipv6.za.org>
-
-   NOTICE THE LICENSE EXCEPTIONS BELOW.
+   Copyright (c) 2020 Salt Stack Formulas
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -11,10 +9,5 @@
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-
-   EXCEPTIONS:
-   You MAY NOT upload parts or the whole work of this product on Github or
-   any other platform again UNLESS you are in possession of an agreement
-   by the author OR use the function called "FORK" provided on Github itself.
-   Other parts of the specified license above are not affected.
+   See the License for the specific language governing permissions and
+   limitations under the License.
